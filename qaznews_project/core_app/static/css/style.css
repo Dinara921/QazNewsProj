@@ -464,3 +464,29 @@ td {
     color: var(--success);
     font-weight: 700;
 }
+.auth-form input, .auth-form label
+{
+    margin-bottom: 10px;
+    display: block;
+    width: 75%;
+}
+
+.auth-form label
+{
+    color:var(--primary);
+    font-weight: 700;
+}
+
+.auth-form input
+{
+    padding: 12px;
+    border: 1px solid var(--secondary);
+    background-color: var(--secondary);
+    border-radius: 10px;
+}
+
+.auth-form .auth-button
+{
+    width: 78%;
+    margin-top: 20px;
+} 

@@ -4,7 +4,9 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 
 from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.forms import AuthenticationForm
+# from django.contrib.auth.forms import AuthenticationForm
+
+from.forms import CustomAuthenticationForm, TagForm, PostForm
 
 def home_page(request):
     primary_posts = Post.objects.all().order_by('-created_at')[:1]
@@ -81,7 +83,7 @@ def tags_news_page(request, slug):
 
 def admin_login_page(request):
     if request.method == "POST":
-        form =AuthenticationForm(request, data=request.POST)
+        form =CustomAuthenticationForm(request, data=request.POST)
         if form.is_valid():
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password') 
@@ -90,7 +92,7 @@ def admin_login_page(request):
                 login (request, user)
                 return redirect('admin_dashboard_page')
     else:
-        form =AuthenticationForm()
+        form =CustomAuthenticationForm()
     context = {
         'form': form
     }
@@ -102,3 +104,24 @@ def admin_dashboard_page(request):
 def admin_logout(request):
     logout(request)
     return redirect("home_page")
+
+def admin_tags_list(request):
+    tags =Tag.objects.all()
+    context = {
+        'tags':tags
+    }
+    return render(request, "./admin/admin-tags-list.html", context)
+
+def admin_tags_create(request):
+    if request.method == "POST":
+        form = TagForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('admin_tags_list')
+        else:
+            form =TagForm()
+            context = {
+                'form': form
+            }
+    
+    return render(request, "./admin/admin-tags-create.html", context)

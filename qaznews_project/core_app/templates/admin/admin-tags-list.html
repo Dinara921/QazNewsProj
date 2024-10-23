@@ -1,0 +1,37 @@
+{% extends '../base.html' %}
+
+{% block title %} Теги {% endblock %}
+
+{% block content %}
+
+<section class="page-block">
+    <div class="container">
+        <div class="last-news__header">
+            <h1 class="title mb-10">Админ панель</h1>
+            <a href="#" class="action create">Добавить</a>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>#</td>
+                    <td>Название тега</td>
+                    <td colspan="2">Действие</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for tag in tags %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{tag.name}}</td>
+                    <td>
+                        <a href="" class="action edit">Изменить</a>
+                        <a href="" class="action delete">Удалить</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+{% endblock %}
