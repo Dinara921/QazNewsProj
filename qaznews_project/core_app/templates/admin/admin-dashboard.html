@@ -1,0 +1,27 @@
+{% extends '../base.html' %}
+
+{% block title %}Админ панель{% endblock %}
+
+{% block content %}
+
+<section class="page-block">
+    <div class="container">
+        <h1 class="title mb-10">Админ панель</h1>
+    </div>
+    <div class="container page-block__row login-row">
+        <div class="page-block__item">
+            <a href="#" class="dashboard-button">
+                <img src="./images/tags.svg" alt="Tags">
+                <span>Теги</span>
+            </a>
+        </div>
+        <div class="page-block__item">
+            <a href="#" class="dashboard-button">
+                <img src="./images/news.svg" alt="News">
+                <span>Новости</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

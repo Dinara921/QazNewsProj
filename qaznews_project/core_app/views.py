@@ -3,6 +3,9 @@ from .models import Tag, Post
 from django.core.paginator import Paginator
 from django.db.models import Q
 
+from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.forms import AuthenticationForm
+
 def home_page(request):
     primary_posts = Post.objects.all().order_by('-created_at')[:1]
     last_posts =  Post.objects.all().order_by('-created_at')[:6]
@@ -75,3 +78,27 @@ def tags_news_page(request, slug):
         'tags': tags
     }
     return render(request, "./client/tags-news.html", context)
+
+def admin_login_page(request):
+    if request.method == "POST":
+        form =AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password') 
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login (request, user)
+                return redirect('admin_dashboard_page')
+    else:
+        form =AuthenticationForm()
+    context = {
+        'form': form
+    }
+    return render(request, "./admin/admin-login.html", context)
+
+def admin_dashboard_page(request):
+    return render(request, "./admin/admin-dashboard.html")
+
+def admin_logout(request):
+    logout(request)
+    return redirect("home_page")
