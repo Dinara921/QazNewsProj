@@ -1,0 +1,18 @@
+{% extends '../base.html' %}
+
+{% block title %} Теги {% endblock %}
+
+{% block content %}
+
+<section class="page-block">
+    <div class="container">
+        <h1 class="title mb-10">Добавить тег</h1>
+        <form class="crud-form" method = "post">
+            {% csrf_token %}
+            {{ form }}
+            <button class="action create w-50">Добавить</button>
+        </form>
+    </div>
+</section>
+
+{% endblock %}
