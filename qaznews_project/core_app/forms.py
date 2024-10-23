@@ -13,26 +13,26 @@ class CustomAuthenticationForm(AuthenticationForm):
             })
 
 class TagForm(forms.ModelForm):
-      class Meta:
-            model = Tag
-            fields = ['name']
-            widgets = {
-                  'name':forms.TextInput(attrs={
-                        'placeholder':'Введите название тега',
-                        'class':'input-tag'
-                  })
-            }
+    class Meta:
+        model = Tag
+        fields = ['name']
+        widgets = {
+            'name':forms.TextInput(attrs={
+                'placeholder':'Введите название тега',
+                'class':'input-tag'
+            })
+        }
 
 class PostForm(forms.ModelForm):
-      class Meta:
-            model = Post
-            field = ['title', 'tag', 'description', 'image']
-            widgets = {
-                  'title': forms.TextInput(attrs={
-                        'placeholder':'Введите название поста'
-                  }),
-                  'description': forms.TextInput(attrs={
-                        'placeholder':'Введите описание поста',
-                        'rows': 4
-                  }),
-            }
+    class Meta:
+        model = Post
+        fields = ['title', 'tag', 'description', 'image']
+        widgets = {
+            'title': forms.TextInput(attrs={
+                'placeholder':'Введите название поста'
+            }),
+            'description': forms.TextInput(attrs={
+                'placeholder':'Введите описание поста',
+                'rows': 4
+            }),
+        }

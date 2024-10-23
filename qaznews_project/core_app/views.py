@@ -118,10 +118,10 @@ def admin_tags_create(request):
         if form.is_valid():
             form.save()
             return redirect('admin_tags_list')
-        else:
-            form =TagForm()
-            context = {
-                'form': form
-            }
+    else:
+        form =TagForm()
+    context = {
+        'form': form
+    }
     
     return render(request, "./admin/admin-tags-create.html", context)
